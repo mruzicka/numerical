@@ -80,8 +80,11 @@ public abstract class NumericalMethod {
 
 			c = solver.next_approximation(a, f_a, b, f_b);
 
-			if (Math.abs(c - old_c) / Math.exp(LN_2 * (Math.getExponent(c) + EXPONENT_SHIFT)) < ERROR_THRESHOLD)
+			if (Math.abs(c - old_c) / Math.exp(LN_2 * (Math.getExponent(c) + EXPONENT_SHIFT)) < ERROR_THRESHOLD) {
+				if (Math.abs(f_c) < Math.abs(function.applyAsDouble(c)))
+					c = old_c;
 				break;
+			}
 		} while (true);
 
 		return c;

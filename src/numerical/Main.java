@@ -15,7 +15,8 @@ public class Main {
 
 //		method = new Bisection();
 //		method = new FalsePosition();
-		method = new TwoStageMethod();
+//		method = new TwoStageMethod();
+		method = new AlternatingMethod();
 
 		double time_burn = method.compute(suicideBurn::solution_function, suicideBurn.lower_bound, suicideBurn.tentative_upper_bound);
 
