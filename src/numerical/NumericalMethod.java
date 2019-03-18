@@ -19,6 +19,8 @@ public abstract class NumericalMethod {
 		ERROR_THRESHOLD = REQUIRED_PRECISION / Math.exp(LN_2 * EXPONENT_SHIFT);
 	}
 
+	protected boolean debug;
+
 	@FunctionalInterface
 	public interface Solver {
 
@@ -63,7 +65,8 @@ public abstract class NumericalMethod {
 		do {
 			double f_c = function.applyAsDouble(c);
 
-			System.out.println(iteration++ + ": a = " + a + ", b = " + b + ", c = " + c + ", f(c) = " + f_c);
+			if (debug)
+				System.out.println(iteration++ + ": a = " + a + ", b = " + b + ", c = " + c + ", f(c) = " + f_c);
 
 			if (f_c == 0)
 				break;
@@ -88,6 +91,10 @@ public abstract class NumericalMethod {
 		} while (true);
 
 		return c;
+	}
+
+	public void set_debug(boolean debug) {
+		this.debug = debug;
 	}
 
 	protected abstract Solver get_solver();

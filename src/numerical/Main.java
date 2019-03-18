@@ -18,6 +18,8 @@ public class Main {
 //		method = new TwoStageMethod();
 		method = new AlternatingMethod();
 
+//		method.set_debug(true);
+
 		double time_burn = method.compute(suicideBurn::solution_function, suicideBurn.lower_bound, suicideBurn.tentative_upper_bound);
 
 		System.out.println(time_burn);
